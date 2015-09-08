@@ -45,21 +45,19 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
         var url = 'http://www.omdbapi.com/?type=movie&tomatoes=true&plot=full&t=' + title;
         $http.get(url)
           .then(function (response) {
-            console.log(response);
-            //var $scope.trailers = 
+            console.log("HI");
             $scope.movie = response.data;
+            console.log("HELLLLLLLLLLLLL", response.data);
+
           })
 
 
         $http.post(trailerUrl, {trailer: title})
           .then(function (response) {
             console.log(response);
-            // console.log("HIIIIIIIIIs")
-            // var rawString = response.data.trailers.trailer[0].embed[0];
-            $scope.trailer = response.data.trailers.trailer[0].embed[0];
-            console.log("HELLLOOO", $scope.trailer)
-
-
+            var trailer = response.data
+            console.log("HELLLOOO", trailer)
+            // $scope.trailer = response.data.trailers.trailer[0].embed[0];
             //var $scope.trailers = 
             // $scope.movie = response.data;
           })
