@@ -36,3 +36,18 @@ app.post('/api/movietrailers', function (req, res) {
     });
   });
 });
+
+//STATIC ROUTES
+// set location for static files
+app.use(express.static(__dirname + '/public'));
+
+// load public/index.html file (angular app)
+app.get('*', function (req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+
+// listen on port 3000
+app.listen(process.env.PORT || 3000, function () {
+  console.log('server started on localhost:3000');
+});
