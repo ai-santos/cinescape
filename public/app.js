@@ -101,16 +101,16 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
   
   $scope.reviews = [
     { 
-      title: "True Romance"
-      image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg"
+      title: "True Romance",
+      image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg",
       review: "This is one of my all time great films, great background music and super Tarrantino dialogue. Strong story line and gripping throughout. 
                The ending is unpredictable and superb. Brad Pitt, Christian Slater Gary Oldman and the other many stars give a great believable presence. 
                A must see film for gangster film lovers."
     },
     { 
-      title: ""
-      image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg"
-      review: "This is one of my all time great films, great background music and super Tarrantino dialogue. Strong story line and gripping throughout. 
+      title: "",
+      image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg",
+      review: "This is one of my all time great films, great background music and super Tarrantino dialogue. Strong story line and gripping throughout., 
                The ending is unpredictable and superb. Brad Pitt, Christian Slater Gary Oldman and the other many stars give a great believable presence. 
                A must see film for gangster film lovers."
     },
