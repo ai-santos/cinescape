@@ -1,12 +1,43 @@
-TODO.txt
+MODELS / OTHER CODE / TODO.txt
 
-AUTH!! w. Braus!
-1. make a controller, template, route to SIGN UP
-2. submit the form to the server - '/users' POST (console.log - email and password)
-3. make the JWT, return status 200 and the token
-4. save JWT to Local Storage
-5. make an AUTH SERVICE = isLoggedIn function
-6. add an isAuthenticated method to the server, protect the POST reviews route
-7. make an INTERCEPTOR to send to the token along with every request
-8. hash password, save the user to the database
+1. movie pics for profile page
+2. links should go to reviews page
+3. reviews page should list all reviews 
+4. hard code data for movie reviews
 
+
+EXTRANEOUS CODE: MODELS 
+
+User:
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    Review = require('./review');
+
+var UserSchema = new Schema ({
+  name: String,
+  text: {
+    reviews: [ReviewSchema] 
+  },
+});
+
+
+var User = mongoose.model('User', UserSchema);
+
+module.exports = User;
+
+Review:
+
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+var ReviewSchema = new Schema({
+  title: String,
+  text: {
+    type: String,
+    required: true
+  }
+});
+
+var Review = mongoose.model('Review', ReviewSchema);
+
+module.exports = Review;

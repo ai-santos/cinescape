@@ -1,4 +1,4 @@
-angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
+angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
 
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider){
       $routeProvider
@@ -17,15 +17,22 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
           // controller: 'ProfileCtrl' 
 
         })
-        .when('/sign-up', {
-          templateUrl: 'templates/sign_up.html',
-          controller: 'SignUpCtrl' 
+
+        .when('/reviews', {
+          templateUrl: 'templates/reviews.html'
+          // controller: 'ProfileCtrl' 
+
         })
 
-        .when('/login', {
-          templateUrl: 'templates/login.html',
-          controller: 'LogInCtrl' 
-        })
+        // .when('/sign-up', {
+        //   templateUrl: 'templates/sign_up.html',
+        //   controller: 'SignUpCtrl' 
+        // })
+
+        // .when('/login', {
+        //   templateUrl: 'templates/login.html',
+        //   controller: 'LogInCtrl' 
+        // })
         
         .otherwise({
           redirectTo: '/'
@@ -37,58 +44,58 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
       });
     }])
 
-  .controller('SignUpCtrl', function ($rootScope, $scope, User, $location, Auth) {
-   $scope.signup = function() {
-     console.log($scope.user)
-     console.log('signing up')
-     $scope.user = {
-       username: '',
-       email: '',
-       DOB: '',
-       password: ''
-     }
-     $scope.postreq = function(user) {
-       $http({
-         method: 'post',
-         url: '/sign-up',
-         data:{
-           user_username:user.username,
-           user_email:user.email,
-           user_DOB: user.DOB,
-           user_password:user.password
-         }
-       }).success(function(data) {
-         console.log("User posted to database")
-       })
-     }
-         $rootScope.$broadcast('signup'); // TELL THE OTHER CONTROLLERS WE'RE LOGGED IN
-         $location.path('/');
-       },
-       function (data) {
-         var message = "Invalid Email or Password"
-         console.log(message)
-       }
- }) 
+ //  .controller('SignUpCtrl', function ($rootScope, $scope, User, $location, Auth) {
+ //   $scope.signup = function() {
+ //     console.log($scope.user)
+ //     console.log('signing up')
+ //     $scope.user = {
+ //       username: '',
+ //       email: '',
+ //       DOB: '',
+ //       password: ''
+ //     }
+ //     $scope.postreq = function(user) {
+ //       $http({
+ //         method: 'post',
+ //         url: '/sign-up',
+ //         data:{
+ //           user_username:user.username,
+ //           user_email:user.email,
+ //           user_DOB: user.DOB,
+ //           user_password:user.password
+ //         }
+ //       }).success(function(data) {
+ //         console.log("User posted to database")
+ //       })
+ //     }
+ //         $rootScope.$broadcast('signup'); // TELL THE OTHER CONTROLLERS WE'RE LOGGED IN
+ //         $location.path('/');
+ //       },
+ //       function (data) {
+ //         var message = "Invalid Email or Password"
+ //         console.log(message)
+ //       }
+ // }) 
 
-   .controller('LoginCtrl', function ($rootScope, $scope, User, $location, Auth) {
-   $scope.user = {};
-   $scope.login = function() {
-     console.log($scope.user)
-     console.log('logging in')
-     User.login({}, $scope.user,
-       function (data) {
-         console.log(data.token)
-         localStorage.setItem("jwtToken", data.token);
-         $rootScope.$broadcast('loggedIn'); // TELL THE OTHER CONTROLLERS WE'RE LOGGED IN
-         $location.path('/');
-       },
-       function (data) {
-         var message = "Invalid Email or Password"
-         console.log(message)
-       }
-     );
-   };
- })
+ //   .controller('LoginCtrl', function ($rootScope, $scope, User, $location, Auth) {
+ //   $scope.user = {};
+ //   $scope.login = function() {
+ //     console.log($scope.user)
+ //     console.log('logging in')
+ //     User.login({}, $scope.user,
+ //       function (data) {
+ //         console.log(data.token)
+ //         localStorage.setItem("jwtToken", data.token);
+ //         $rootScope.$broadcast('loggedIn'); // TELL THE OTHER CONTROLLERS WE'RE LOGGED IN
+ //         $location.path('/');
+ //       },
+ //       function (data) {
+ //         var message = "Invalid Email or Password"
+ //         console.log(message)
+ //       }
+ //     );
+ //   };
+ // })
 
   .controller('SearchCtrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce){
     $scope.searchMovie = function () {
@@ -132,21 +139,28 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
   ];
 }])
 
-  .controller('MainCtrl', ['$rootScope', '$scope', '$location', 'Auth', '$http', function ($rootScope, $scope, $location, Auth, $http) {
-      $scope.logout = function() {
-      localStorage.removeItem('jwtToken');
-      $location.path('/login')
-      $scope.isLoggedIn = false;
-    }
+  .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
+    //   $scope.logout = function() {
+    //   localStorage.removeItem('jwtToken');
+    //   $location.path('/login')
+    //   $scope.isLoggedIn = false;
+    // }
 
-    // CHECK IF LOGGED IN (IF JWT TOKEN PRESENT)
-    $scope.isLoggedIn = Auth.isLoggedIn();
+    // // CHECK IF LOGGED IN (IF JWT TOKEN PRESENT)
+    // $scope.isLoggedIn = Auth.isLoggedIn();
 
-    // ON LOGIN UPDATE NAVBAR
-    $rootScope.$on('loggedIn', function () {
-      $scope.isLoggedIn = true
-    })
+    // // ON LOGIN UPDATE NAVBAR
+    // $rootScope.$on('loggedIn', function () {
+    //   $scope.isLoggedIn = true
+    // })
   }])
+
+  /*
+ * SERVICES
+ */
+
+
+  
      
   // }]);
 
