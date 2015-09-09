@@ -120,7 +120,7 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
   .controller('SearchCtrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce){
     $scope.searchMovie = function () {
       console.log($scope.title);
-      var url = 'http://www.omdbapi.com/?type=movie&tomatoes=true&plot=full&t=' + $scope.title;;
+      var url = 'https://www.omdbapi.com/?type=movie&tomatoes=true&plot=full&t=' + $scope.title;;
       $http.get(url)
         .then(function (response) {
           console.log(response);
