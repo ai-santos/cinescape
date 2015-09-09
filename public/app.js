@@ -120,7 +120,7 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
   .controller('SearchCtrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce){
     $scope.searchMovie = function () {
       console.log($scope.title);
-      var url = 'http://www.omdbapi.com/?type=movie&tomatoes=true&plot=full&t=' + $scope.title;;
+      var url = 'https://www.omdbapi.com/?type=movie&tomatoes=true&plot=full&t=' + $scope.title;;
       $http.get(url)
         .then(function (response) {
           console.log(response);
@@ -148,13 +148,13 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
     $scope.myInterval = 2000;
     $scope.slides = [
     {
-      image: 'http://screenrant.com/wp-content/uploads/Mad-Max-4-Fury-Road-Reviews.jpg'
+      image: 'https://screenrant.com/wp-content/uploads/Mad-Max-4-Fury-Road-Reviews.jpg'
     },
     {
-      image: 'http://cdn.entertainmentfuse.com/media/2014/12/the-lord-of-the-rings-the-fellowship.jpg'
+      image: 'https://cdn.entertainmentfuse.com/media/2014/12/the-lord-of-the-rings-the-fellowship.jpg'
     },
     {
-      image: 'http://www.artofvfx.com/TWILIGHT5/TWILIGHT5_TIPPETT_VFX_10.jpg'
+      image: 'https://www.artofvfx.com/TWILIGHT5/TWILIGHT5_TIPPETT_VFX_10.jpg'
     },
   ];
 }])
