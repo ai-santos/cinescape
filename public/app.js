@@ -156,6 +156,18 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
     {
       image: 'http://www.artofvfx.com/TWILIGHT5/TWILIGHT5_TIPPETT_VFX_10.jpg'
     },
+    {
+      image: 'http://blogs-images.forbes.com/scottmendelson/files/2015/06/pixar.jpg'
+    },
+    {
+      image: 'http://www.hdwallpaperszing.com/wp-content/uploads/2015/07/Tom-Cruise-Mission-Impossible-5-Rogue-Nation-2015-BMW-Wallpaper-1280x800.jpg'
+    },
+    {
+      image: 'img/collections/jurrasicworld.jpg'
+    },
+    {
+      image: 'img/collections/straightouttacompton.jpg'
+    }
   ];
 }])
 
