@@ -1,0 +1,12 @@
+TODO.txt
+
+AUTH!! w. Braus!
+1. make a controller, template, route to SIGN UP
+2. submit the form to the server - '/users' POST (console.log - email and password)
+3. make the JWT, return status 200 and the token
+4. save JWT to Local Storage
+5. make an AUTH SERVICE = isLoggedIn function
+6. add an isAuthenticated method to the server, protect the POST reviews route
+7. make an INTERCEPTOR to send to the token along with every request
+8. hash password, save the user to the database
+

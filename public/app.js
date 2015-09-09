@@ -15,15 +15,17 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
         .when('/profile', {
           templateUrl: 'templates/profile.html'
           // controller: 'ProfileCtrl' 
+
         })
-        // .when('/log-in', {
-        //   templateUrl: 'templates/log-in.html',
-        //   controller: 'LoginCtrl' 
-        // })
-        // .when('/profile', {
-        //   templateUrl: 'templates/profile.html',
-        //   controller: 'ProfileCtrl' 
-        // })
+        .when('/sign-up', {
+          templateUrl: 'templates/sign_up.html',
+          controller: 'SignUpCtrl' 
+        })
+
+        .when('/login', {
+          templateUrl: 'templates/login.html',
+          controller: 'LogInCtrl' 
+        })
         
         .otherwise({
           redirectTo: '/'
@@ -35,35 +37,84 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
       });
     }])
 
-  .controller('SearchCtrl', ['$scope', '$http', function ($scope, $http){
-      $scope.searchMovie = function () {
-        console.log($scope.title);
+  .controller('SignUpCtrl', function ($rootScope, $scope, User, $location, Auth) {
+   $scope.signup = function() {
+     console.log($scope.user)
+     console.log('signing up')
+     $scope.user = {
+       username: '',
+       email: '',
+       DOB: '',
+       password: ''
+     }
+     $scope.postreq = function(user) {
+       $http({
+         method: 'post',
+         url: '/sign-up',
+         data:{
+           user_username:user.username,
+           user_email:user.email,
+           user_DOB: user.DOB,
+           user_password:user.password
+         }
+       }).success(function(data) {
+         console.log("User posted to database")
+       })
+     }
+         $rootScope.$broadcast('signup'); // TELL THE OTHER CONTROLLERS WE'RE LOGGED IN
+         $location.path('/');
+       },
+       function (data) {
+         var message = "Invalid Email or Password"
+         console.log(message)
+       }
+ }) 
 
-        var title = $scope.title;
-        $scope.title = '';
-        var trailerUrl =  '/api/movietrailers';
-        var url = 'http://www.omdbapi.com/?type=movie&tomatoes=true&plot=full&t=' + title;
-        $http.get(url)
-          .then(function (response) {
-            console.log(response);
-            //var $scope.trailers = 
-            $scope.movie = response.data;
-          })
+   .controller('LoginCtrl', function ($rootScope, $scope, User, $location, Auth) {
+   $scope.user = {};
+   $scope.login = function() {
+     console.log($scope.user)
+     console.log('logging in')
+     User.login({}, $scope.user,
+       function (data) {
+         console.log(data.token)
+         localStorage.setItem("jwtToken", data.token);
+         $rootScope.$broadcast('loggedIn'); // TELL THE OTHER CONTROLLERS WE'RE LOGGED IN
+         $location.path('/');
+       },
+       function (data) {
+         var message = "Invalid Email or Password"
+         console.log(message)
+       }
+     );
+   };
+ })
 
+  .controller('SearchCtrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce){
+    $scope.searchMovie = function () {
+      console.log($scope.title);
+      var url = 'http://www.omdbapi.com/?type=movie&tomatoes=true&plot=full&t=' + $scope.title;;
+      $http.get(url)
+        .then(function (response) {
+          console.log(response);
+          //var $scope.trailers = 
+          $scope.movie = response.data;
 
-        $http.post(trailerUrl, {trailer: title})
-          .then(function (response) {
-            console.log(response);
-            // console.log("HIIIIIIIIIs")
-            // var rawString = response.data.trailers.trailer[0].embed[0];
-            $scope.trailer = response.data.trailers.trailer[0].embed[0];
-            console.log("HELLLOOO", $scope.trailer)
-
-
-            //var $scope.trailers = 
-            // $scope.movie = response.data;
-          })
-      };
+          $http.post('/api/movietrailers', { trailer: $scope.movie.Title })
+            .then(function (response) {
+              console.log(response);
+              // var rawString = response.data.trailers.trailer[0].embed[0];
+              console.log(response.data.trailers.trailer[0].embed[0])
+              $scope.trailer = $sce.trustAsHtml(response.data.trailers.trailer[0].embed[0]);
+              console.log("HELLLOOO", $scope.trailer)
+              $scope.title = '';
+              //var $scope.trailers = 
+              // $scope.movie = response.data;
+            }
+          )
+        }
+      )
+    };
   }])
 
   .controller('ShowMovieCtrl', ['$scope', function ($scope){
@@ -82,7 +133,7 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
 }])
 
   .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
-              
+
      
   }]);
 

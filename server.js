@@ -29,9 +29,11 @@ app.use(bodyParser.json());
 //trailer addict API
 app.post('/api/movietrailers', function (req, res) {
   var trailer = req.body.trailer;
+  console.log(trailer);
   request('http://api.traileraddict.com/?count=10&film=' + trailer, function (error, response, body) {
     var xml = body;
     parseString(xml, function (err, result) {
+      console.log(result);
       res.json(result);
     });
   });
