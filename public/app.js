@@ -148,7 +148,7 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
     })
   }])
      
-  }]);
+  // }]);
 
 
 
