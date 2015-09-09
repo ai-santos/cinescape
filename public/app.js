@@ -132,8 +132,21 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute'])
   ];
 }])
 
-  .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('MainCtrl', ['$rootScope', '$scope', '$location', 'Auth', '$http', function ($rootScope, $scope, $location, Auth, $http) {
+      $scope.logout = function() {
+      localStorage.removeItem('jwtToken');
+      $location.path('/login')
+      $scope.isLoggedIn = false;
+    }
 
+    // CHECK IF LOGGED IN (IF JWT TOKEN PRESENT)
+    $scope.isLoggedIn = Auth.isLoggedIn();
+
+    // ON LOGIN UPDATE NAVBAR
+    $rootScope.$on('loggedIn', function () {
+      $scope.isLoggedIn = true
+    })
+  }])
      
   }]);
 

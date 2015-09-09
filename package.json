@@ -4,7 +4,7 @@
   "description": "movie review app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "grunt test",
     "start": "node server.js"
   },
   "repository": {
@@ -23,5 +23,8 @@
     "mongoose": "^4.1.6",
     "request": "^2.61.0",
     "xml2js": "^0.4.12"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13"
   }
 }

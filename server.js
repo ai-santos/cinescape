@@ -7,11 +7,11 @@ var express = require('express'),
     request = require('request')
 
 // connect to mongodb
-mongoose.connect(
-  process.env.MONGOLAB_URI ||
-  process.env.MONGOHQ_URL ||
-  'mongodb://localhost/cinephile'
-);
+// mongoose.connect(
+//   process.env.MONGOLAB_URI ||
+//   process.env.MONGOHQ_URL ||
+//   'mongodb://localhost/cinephile'
+// );
 // configure body-parser
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
