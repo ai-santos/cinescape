@@ -97,24 +97,24 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
  //   };
  // })
 
-  .controller('ProfileCtrl', ['$scope', function ($scope){
+  // .controller('ProfileCtrl', ['$scope', function ($scope){
   
-  $scope.reviews = [
-    { 
-      title: "True Romance",
-      image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg",
-      review: "This is one of my all time great films, great background music and super Tarrantino dialogue. Strong story line and gripping throughout. 
-               The ending is unpredictable and superb. Brad Pitt, Christian Slater Gary Oldman and the other many stars give a great believable presence. 
-               A must see film for gangster film lovers."
-    },
-    { 
-      title: "",
-      image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg",
-      review: "This is one of my all time great films, great background music and super Tarrantino dialogue. Strong story line and gripping throughout., 
-               The ending is unpredictable and superb. Brad Pitt, Christian Slater Gary Oldman and the other many stars give a great believable presence. 
-               A must see film for gangster film lovers."
-    },
-  ]
+  // $scope.reviews = [
+  //   { 
+  //     title: "True Romance",
+  //     image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg",
+  //     review: "This is one of my all time great films, great background music and super Tarrantino dialogue. Strong story line and gripping throughout. 
+  //              The ending is unpredictable and superb. Brad Pitt, Christian Slater Gary Oldman and the other many stars give a great believable presence. 
+  //              A must see film for gangster film lovers."
+  //   },
+  //   { 
+  //     title: "",
+  //     image: "http://smariorganics.com/wp-content/uploads/2014/01/true_romance_ver2.jpg",
+  //     review: "This is one of my all time great films, great background music and super Tarrantino dialogue. Strong story line and gripping throughout. 
+  //              The ending is unpredictable and superb. Brad Pitt, Christian Slater Gary Oldman and the other many stars give a great believable presence. 
+  //              A must see film for gangster film lovers."
+  //   },
+  // }])
   
 
   .controller('SearchCtrl', ['$scope', '$http', '$sce', function ($scope, $http, $sce){
@@ -148,13 +148,13 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
     $scope.myInterval = 2000;
     $scope.slides = [
     {
-      image: 'https://screenrant.com/wp-content/uploads/Mad-Max-4-Fury-Road-Reviews.jpg'
+      image: 'http://screenrant.com/wp-content/uploads/Mad-Max-4-Fury-Road-Reviews.jpg'
     },
     {
-      image: 'https://cdn.entertainmentfuse.com/media/2014/12/the-lord-of-the-rings-the-fellowship.jpg'
+      image: 'http://cdn.entertainmentfuse.com/media/2014/12/the-lord-of-the-rings-the-fellowship.jpg'
     },
     {
-      image: 'https://www.artofvfx.com/TWILIGHT5/TWILIGHT5_TIPPETT_VFX_10.jpg'
+      image: 'http://www.artofvfx.com/TWILIGHT5/TWILIGHT5_TIPPETT_VFX_10.jpg'
     },
   ];
 }])
