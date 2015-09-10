@@ -131,8 +131,15 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
             .then(function (response) {
               console.log(response);
               // var rawString = response.data.trailers.trailer[0].embed[0];
-              console.log(response.data.trailers.trailer[0].embed[0])
-              $scope.trailer = $sce.trustAsHtml(response.data.trailers.trailer[0].embed[0]);
+              console.log("HIIIIII",response.data.trailers.trailer)
+              var trailer_array = response.data.trailers.trailer
+              $scope.trailer_array = trailer_array
+              function showTrailer(e){
+                console.log(e.embed[0])
+                $scope.trailer = $sce.trustAsHtml(e.embed[0]);
+              };
+              trailer_array.forEach(showTrailer)
+              // $scope.trailer = $sce.trustAsHtml(response.data.trailers.trailer[0].embed[0]);
               console.log("HELLLOOO", $scope.trailer)
               $scope.title = '';
               //var $scope.trailers = 
