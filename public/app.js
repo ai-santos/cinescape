@@ -175,6 +175,7 @@ angular.module('cinescape', ['ui.bootstrap', 'ngRoute', 'ngResource'])
     {
       image: 'img/collections/straightouttacompton.jpg'
     }
+
   ];
 }])
 
